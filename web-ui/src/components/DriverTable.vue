@@ -36,12 +36,18 @@ function loadDriver(driver){
   loadedDriver.value = driver;
 }
 
+async function sortDrivers(){
+  const result = await fetch('/api/driver/sort', {method: 'GET'})
+  drivers.value = await result.json()
+}
+
 </script>
 
 <template>
   <div class="searchBar">
     <input type="text" v-model="searchKey">
     <button @click="searchDrivers">Search</button>
+    <button @click="sortDrivers">Sort by skill</button>
   </div>
   <table>
     <tbody>
