@@ -61,26 +61,26 @@ async function addDriver() {
   <form>
     <label>Number</label>
     <br>
-    <input type="text" v-model="number">
+    <InputText type="text" v-model="number"/>
     <br>
 
     <label>Name</label>
     <br>
-    <input type="text" v-model="name">
+    <InputText type="text" v-model="name"/>
     <br>
 
     <label>Team</label>
     <br>
-    <input type="text" v-model="team">
+    <InputText type="text" v-model="team"/>
     <br>
 
     <label>Skill Level</label>
     <br>
-    <input type="number" v-model="skill">
+    <InputText type="number" v-model="skill"/>
     <br>
   </form>
-  <button type="button" @click="addDriver">Add</button>
-  <button type="button" @click="updateDriver">Update</button>
+  <Button type="button" @click="addDriver">Add</Button>
+  <Button type="button" @click="updateDriver">Update</Button>
 </template>
 
 <style scoped>

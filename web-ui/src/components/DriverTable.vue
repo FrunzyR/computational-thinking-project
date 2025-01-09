@@ -25,18 +25,18 @@ async function filterDriverBySkill() {
   drivers.value = await result.json()
 }
 
-async function removeDriver(number){
+async function removeDriver(number) {
   await fetch('/api/driver?number=' + number, {method: 'DELETE'})
   await getAllDrivers()
 }
 
 const loadedDriver = ref(null);
 
-function loadDriver(driver){
+function loadDriver(driver) {
   loadedDriver.value = driver;
 }
 
-async function sortDrivers(){
+async function sortDrivers() {
   const result = await fetch('/api/driver/sort', {method: 'GET'})
   drivers.value = await result.json()
 }
@@ -44,43 +44,76 @@ async function sortDrivers(){
 </script>
 
 <template>
-  <div class="searchBar">
-    <input type="text" v-model="searchKey">
-    <button @click="searchDrivers">Search</button>
-    <button @click="sortDrivers">Sort by skill</button>
-  </div>
-  <table>
-    <tbody>
-    <tr>
-      <th>Number</th>
-      <th>Name</th>
-      <th>Team</th>
-      <th>Skill</th>
-      <th></th>
-    </tr>
-    <tr v-for="driver of drivers">
-      <td>{{ driver.number }}</td>
-      <td>{{ driver.name }}</td>
-      <td>{{ driver.team }}</td>
-      <td>{{ driver.skill_level }}</td>
-      <td>
-        <button @click="() => removeDriver(driver.number)">x</button>
-        <button @click="() => loadDriver(driver)">Load</button>
-      </td>
-    </tr>
-    </tbody>
-  </table>
-  <div class="filterBar">
-    <label>Lower Value <input type="number" v-model="lower"></label>
-    <br>
-    <label>Upper Value <input type="number" v-model="upper"></label>
-    <button @click="filterDriverBySkill">Filter</button>
-  </div>
+  <div class="container">
+    <div>
 
-  <DriverForm @need-refresh="getAllDrivers" :driver="loadedDriver"/>
+      <div class="searchBar">
+        <InputText type="text" v-model="searchKey"/>
+        <Button @click="searchDrivers">Search</Button>
+        <Button @click="sortDrivers">Sort by skill</Button>
+      </div>
+
+<!--      <DataTable :value="drivers">-->
+<!--        <Column field="name" header="Name"></Column>-->
+<!--        <Column field="number" header="Number"></Column>-->
+<!--        <Column field="team" header="Team"></Column>-->
+<!--        <Column field="skill_level" header="Skill level"></Column>-->
+<!--        <Column header="Delete">-->
+<!--          <template #body="slotProps">-->
+<!--            <Button @click="() => removeDriver(slotProps.driver.number)" label="x" severity="danger"/>-->
+<!--          </template>-->
+<!--        </Column>-->
+<!--      </DataTable>-->
+
+      <table>
+        <tbody>
+        <tr>
+          <th>Number</th>
+          <th>Name</th>
+          <th>Team</th>
+          <th>Skill</th>
+          <th></th>
+        </tr>
+        <tr v-for="driver of drivers">
+          <td>{{ driver.number }}</td>
+          <td>{{ driver.name }}</td>
+          <td>{{ driver.team }}</td>
+          <td>{{ driver.skill_level }}</td>
+          <td>
+            <Button @click="() => removeDriver(driver.number)" label="x" severity="danger"/>
+          </td>
+          <td>
+            <Button @click="() => loadDriver(driver)">Load</Button>
+          </td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div>
+      <div class="filterBar">
+        <label>Lower Value
+          <InputText type="number" v-model="lower"/>
+        </label>
+        <br>
+        <label>Upper Value
+          <InputText type="number" v-model="upper"/>
+        </label>
+        <Button @click="filterDriverBySkill">Filter</Button>
+      </div>
+
+      <DriverForm @need-refresh="getAllDrivers" :driver="loadedDriver"/>
+    </div>
+  </div>
 
 
 </template>
 
 <style scoped>
+.container {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  justify-content: space-between;
+}
 </style>
