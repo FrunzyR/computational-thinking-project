@@ -9,6 +9,7 @@ import DriverForm from "@/components/DriverForm.vue";
     <nav class="navbar">
       <RouterLink to="/">Drivers</RouterLink>
       <RouterLink to="/circuits">Circuits</RouterLink>
+      <RouterLink to="/results">Simulations</RouterLink>
     </nav>
   </header>
 
