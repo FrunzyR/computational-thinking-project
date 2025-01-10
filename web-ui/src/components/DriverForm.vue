@@ -58,29 +58,33 @@ async function addDriver() {
 </script>
 
 <template>
-  <form>
-    <label>Number</label>
-    <br>
-    <InputText type="text" v-model="number"/>
-    <br>
+  <Card>
+    <template #header>
+      <h1>Driver Form</h1>
+    </template>
+    <template #content>
+      <form class="flex flex-column">
+        <label>Number</label>
+        <InputText type="text" v-model="number"/>
 
-    <label>Name</label>
-    <br>
-    <InputText type="text" v-model="name"/>
-    <br>
+        <label>Name</label>
+        <InputText type="text" v-model="name"/>
 
-    <label>Team</label>
-    <br>
-    <InputText type="text" v-model="team"/>
-    <br>
+        <label>Team</label>
+        <InputText type="text" v-model="team"/>
 
-    <label>Skill Level</label>
-    <br>
-    <InputText type="number" v-model="skill"/>
-    <br>
-  </form>
-  <Button type="button" @click="addDriver">Add</Button>
-  <Button type="button" @click="updateDriver">Update</Button>
+        <label>Skill Level</label>
+        <InputText type="number" v-model="skill"/>
+      </form>
+    </template>
+    <template #footer>
+      <div class="flex gap-3">
+        <Button type="button" @click="addDriver">Add</Button>
+        <Button type="button" @click="updateDriver">Update</Button>
+      </div>
+    </template>
+  </Card>
+
 </template>
 
 <style scoped>

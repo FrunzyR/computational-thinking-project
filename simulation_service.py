@@ -11,7 +11,7 @@ class SimulationService:
         return milliseconds_fastest_lap
 
     def generate_lap_time(self, fastest_lap, skill_level):
-        return fastest_lap + (100 - skill_level) * 10 - random.randint(-100, 100)
+        return fastest_lap + (100 - int(skill_level)) * 10 - random.randint(-100, 100)
 
     def simulate_lap_result(self, drivers, fastest_lap):
         drivers_name = []

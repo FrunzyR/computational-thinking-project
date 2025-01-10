@@ -6,7 +6,7 @@ import DriverTable from "@/components/DriverTable.vue";
 import CircuitsView from "@/components/CircuitsView.vue";
 import {createMemoryHistory, createRouter, createWebHashHistory} from "vue-router";
 import PrimeVue from 'primevue/config';
-import {AutoComplete, Button, CascadeSelect, Column, DataTable, InputText, Select} from "primevue";
+import {AutoComplete, Button, Card, CascadeSelect, Column, DataTable, InputText, Select} from "primevue";
 import Aura from '@primevue/themes/aura';
 import SimulationsView from "@/components/SimulationsView.vue";
 import Chart from "primevue/chart";
@@ -35,4 +35,5 @@ createApp(App)
     .component('Column', Column)
     .component('Chart', Chart)
     .component('Select', Select)
+    .component('Card', Card)
     .mount('#app')

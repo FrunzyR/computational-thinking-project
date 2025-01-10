@@ -31,7 +31,7 @@ const setChartData = () => {
     labels: viewResult.value.drivers_names,
     datasets: [
       {
-        label: 'My First dataset',
+        label: 'Avarage Lap Time',
         backgroundColor: documentStyle.getPropertyValue('--p-cyan-500'),
         borderColor: documentStyle.getPropertyValue('--p-cyan-500'),
         data: viewResult.value.results
@@ -94,6 +94,7 @@ async function getSimulationResult() {
     <div>
       <Select v-model="selectedCircuit" :options="circuits" option-label="circuit" @change="getSimulationResult"/>
     </div>
+    <br>
     <div class="card">
       <Chart type="bar" :data="chartData" :options="chartOptions"/>
     </div>

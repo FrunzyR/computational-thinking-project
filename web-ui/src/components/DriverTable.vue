@@ -47,23 +47,11 @@ async function sortDrivers() {
   <div class="container">
     <div>
 
-      <div class="searchBar">
+      <div class="searchBar flex flex-row justify-content-between">
         <InputText type="text" v-model="searchKey"/>
         <Button @click="searchDrivers">Search</Button>
-        <Button @click="sortDrivers">Sort by skill</Button>
+        <Button @click="sortDrivers">Sort</Button>
       </div>
-
-<!--      <DataTable :value="drivers">-->
-<!--        <Column field="name" header="Name"></Column>-->
-<!--        <Column field="number" header="Number"></Column>-->
-<!--        <Column field="team" header="Team"></Column>-->
-<!--        <Column field="skill_level" header="Skill level"></Column>-->
-<!--        <Column header="Delete">-->
-<!--          <template #body="slotProps">-->
-<!--            <Button @click="() => removeDriver(slotProps.driver.number)" label="x" severity="danger"/>-->
-<!--          </template>-->
-<!--        </Column>-->
-<!--      </DataTable>-->
 
       <table>
         <tbody>
@@ -72,7 +60,8 @@ async function sortDrivers() {
           <th>Name</th>
           <th>Team</th>
           <th>Skill</th>
-          <th></th>
+          <th>Delete</th>
+          <th>Modify</th>
         </tr>
         <tr v-for="driver of drivers">
           <td>{{ driver.number }}</td>
@@ -83,7 +72,7 @@ async function sortDrivers() {
             <Button @click="() => removeDriver(driver.number)" label="x" severity="danger"/>
           </td>
           <td>
-            <Button @click="() => loadDriver(driver)">Load</Button>
+            <Button @click="() => loadDriver(driver)" severity="secondary">Load</Button>
           </td>
         </tr>
         </tbody>
@@ -91,21 +80,27 @@ async function sortDrivers() {
     </div>
 
     <div>
-      <div class="filterBar">
-        <label>Lower Value
-          <InputText type="number" v-model="lower"/>
-        </label>
-        <br>
-        <label>Upper Value
-          <InputText type="number" v-model="upper"/>
-        </label>
-        <Button @click="filterDriverBySkill">Filter</Button>
-      </div>
+      <Card>
+        <template #title>
+          <h1>Filter</h1>
+        </template>
+        <template #content>
+          <label>Lower Value
+            <InputText type="number" v-model="lower"/>
+          </label>
+          <br>
+          <label>Upper Value
+            <InputText type="number" v-model="upper"/>
+          </label>
+        </template>
+        <template #footer>
+          <Button @click="filterDriverBySkill">Filter</Button>
+        </template>
+      </Card>
 
       <DriverForm @need-refresh="getAllDrivers" :driver="loadedDriver"/>
     </div>
   </div>
-
 
 </template>
 
@@ -115,5 +110,9 @@ async function sortDrivers() {
   flex-direction: row;
   width: 100%;
   justify-content: space-between;
+}
+
+.searchBar {
+  margin-bottom: 10%;
 }
 </style>

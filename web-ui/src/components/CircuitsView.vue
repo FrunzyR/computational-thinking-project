@@ -45,7 +45,7 @@ async function loadCircuit(circuit) {
 <template>
   <div class="container">
     <div>
-      <div class="searchBar">
+      <div class="searchBar flex flex-row justify-content-between">
         <InputText type="text" v-model="searchKey"/>
         <Button @click="searchCircuit">Search Circuit</Button>
         <Button @click="sortCircuits">Sort by time</Button>
@@ -75,12 +75,27 @@ async function loadCircuit(circuit) {
       </table>
     </div>
     <div>
-      <div class="filterBar">
-        <label>Lower length<InputText type="number" v-model="lower"/> </label>
-        <label>Upper length<InputText type="number" v-model="upper"/> </label>
-        <Button @click="filterByKm">Filter</Button>
-        <CircuitForm @need-refresh="getAllCircuits" :circuit="loadedCircuit"/>
-      </div>
+      <Card>
+        <template #title>
+          <h1>Filter</h1>
+        </template>
+        <template #content>
+          <label>Lower Length
+            <InputText type="number" v-model="lower"/>
+          </label>
+          <br>
+          <label>Upper Length
+            <InputText type="number" v-model="upper"/>
+          </label>
+
+        </template>
+        <template #footer>
+          <Button @click="filterByKm">Filter</Button>
+        </template>
+      </Card>
+
+      <CircuitForm @need-refresh="getAllCircuits" :circuit="loadedCircuit"/>
+
     </div>
   </div>
 
@@ -92,5 +107,9 @@ async function loadCircuit(circuit) {
   flex-direction: row;
   width: 100%;
   justify-content: space-between;
+}
+
+.searchBar{
+  margin-bottom: 10%;
 }
 </style>

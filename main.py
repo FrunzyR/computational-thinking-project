@@ -19,7 +19,7 @@ def get_drivers():
 
 @app.route('/driver', methods=['POST'])
 def add_driver():
-    if driver_repo.find(int(request.json["round"])):
+    if driver_repo.find(int(request.json["number"])):
         return "Number already exists", 400
     driver_repo.add(request.json)
     return "Driver added", 200
@@ -66,7 +66,7 @@ def filter_driver():
 @app.route('/driver/sort', methods=['GET'])
 def sort_driver():
     all_drivers = driver_repo.get_all()
-    return sorted(all_drivers, key=lambda driver: driver['skill_level'])
+    return sorted(all_drivers, key=lambda driver: int(driver['skill_level']))
 
 @app.route('/circuit', methods=['GET'])
 def get_all_circuits():

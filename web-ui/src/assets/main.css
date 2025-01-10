@@ -1,4 +1,5 @@
 @import './base.css';
+@import 'primeflex/primeflex.css';
 
 #app {
   max-width: 1280px;
